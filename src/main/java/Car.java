@@ -2,9 +2,9 @@ public class Car {
     String name;
     int speed;
 
-    public Car(String name, int score) {
+    public Car(String name, int speed) {
         this.name = name;
-        this.speed = score;
+        this.speed = speed;
     }
 
     public int scoreKillometrs24(){

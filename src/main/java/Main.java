@@ -7,20 +7,34 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 3; i++) {
-            System.out.println("Введите название машины №" + (i + 1) + ": ");
-            String name = scanner.nextLine();
+            String name;
+            while (true) {
+                System.out.println("Введите название машины №" + (i + 1) + ": ");
+                name = scanner.nextLine();
+                if (!name.trim().isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Название машины не может быть пустым, попробуй снова.");
+                }
+            }
 
             int speed;
             while (true) {
                 System.out.println("Введите скорость машины №" + (i + 1) + ": ");
-                speed = scanner.nextInt();
-                if (speed > 0 && speed < 250) {
+                if (scanner.hasNextInt()) {
+                    speed = scanner.nextInt();
                     scanner.nextLine();
-                    break;
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    } else {
+                        System.out.println("Некорректная скорость машины, попробуй ещё раз");
+                    }
                 } else {
-                    System.out.println("Некоректная скороть машины, попробуй ещё раз");
+                    System.out.println("Введено не число, попробуй снова.");
+                    scanner.next();
                 }
             }
+
             Car car = new Car(name, speed);
             cars.add(car);
         }
